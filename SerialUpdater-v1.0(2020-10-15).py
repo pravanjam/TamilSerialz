@@ -6,7 +6,8 @@ import re
 import csv
 import time
 
-#**********************************************
+
+# **********************************************
 
 
 def urlParser(my_url, parserType):
@@ -15,7 +16,9 @@ def urlParser(my_url, parserType):
     urlHTML.close()
     PParser = bSoup(page_html, parserType)
     return PParser
-#**********************************************
+
+
+# **********************************************
 
 
 def sortContainers(containers, lastUpdateEpi):
@@ -38,7 +41,7 @@ def sortContainers(containers, lastUpdateEpi):
             # print(EpisodePage)
             EpiContainer = EpisodePage.findAll(
                 "div", {"class": "vw-post-content clearfix"})
-            #print(EpiContainer[0].find_all({'iframe': 'src'}))
+            # print(EpiContainer[0].find_all({'iframe': 'src'}))
             ipart = 0
             for iframe in EpiContainer[0].find_all({'iframe': 'src'}):
                 sLink = iframe["src"].replace(",", "|")
@@ -51,7 +54,7 @@ def sortContainers(containers, lastUpdateEpi):
 
                 try:
                     GetImgLink = str(str(EpiImageContainer[8]).split('"poster_url":"')[
-                                     1]).split('"')[0].replace('\\', '')  # + ".jpg"
+                                         1]).split('"')[0].replace('\\', '')  # + ".jpg"
 
                 except:
                     GetImgLink = 'https://raw.githubusercontent.com/pravanjam/TamilSerialz/master/NoPic.jpg'
@@ -79,7 +82,7 @@ def sortContainers(containers, lastUpdateEpi):
     return [tempNINI, StopUpdate]
 
 
-#************************************************
+# ************************************************
 start_time = time.time()
 
 MasterSerialList = uOpen(
@@ -113,7 +116,6 @@ for MetaID in range(0, len(SerialMeta)):
         # print(data)
 
     for epi in range(1, len(data)):
-
         SerialMeta[MetaID]['VideoData'].append({'name': data[epi][0],
                                                 'thumb': data[epi][1],
                                                 'video': data[epi][2],
@@ -143,10 +145,10 @@ for MetaID in range(0, len(SerialMeta)):
         try:
             if pagenumber > 1:
                 my_url = baseurl + 'page/' + \
-                    str(i + 1) + '/?s=' + SerialMeta[MetaID]['SearchID']
+                         str(i + 1) + '/?s=' + SerialMeta[MetaID]['SearchID']
             else:
                 my_url = baseurl + 'page/' + \
-                    str(i + 1) + '/?s=' + SerialMeta[MetaID]['SearchID']
+                         str(i + 1) + '/?s=' + SerialMeta[MetaID]['SearchID']
 
             PParser = urlParser(my_url, "html.parser")
 
@@ -174,11 +176,11 @@ for MetaID in range(0, len(SerialMeta)):
     for epi in NINIKEYS:
         SerialMeta[MetaID]['VideoData'].append({'name': epi,
                                                 'thumb': NINI[epi][1],
-                                                'video': 'plugin://plugin.video.dailymotion_com/?url=' + NINI[epi][0] + '&mode=playVideo',
+                                                'video': 'plugin://plugin.video.dailymotion_com/?url=' + NINI[epi][
+                                                    0] + '&mode=playVideo',
                                                 'genre': SerialMeta[MetaID]['Genre']})
 
-
-#VIDEOS = {'Naam Iruvar Namku Iruvar': SerialMeta[0]['VideoData'], 'Siva Manasula Sakthi' : SerialMeta[1]['VideoData'], 'Arundhati' : SerialMeta[2]['VideoData']}
+# VIDEOS = {'Naam Iruvar Namku Iruvar': SerialMeta[0]['VideoData'], 'Siva Manasula Sakthi' : SerialMeta[1]['VideoData'], 'Arundhati' : SerialMeta[2]['VideoData']}
 VIDEOS = {}
 filename = []
 for SerialListID in range(1, len(Serial_Mst)):
@@ -186,8 +188,7 @@ for SerialListID in range(1, len(Serial_Mst)):
     filename.append(Serial_Mst[SerialListID]
                     [0].replace(" ", "") + "_SerialData.csv")
 
-
-#filename = ["NaamIruvar_SerialData.csv", "SivaMaasula_SerialData.csv", "Arundhati_SerialData.csv"]
+# filename = ["NaamIruvar_SerialData.csv", "SivaMaasula_SerialData.csv", "Arundhati_SerialData.csv"]
 # print(filename)
 for fileid in range(0, len(filename)):
     f = open(filename[fileid], "w")
