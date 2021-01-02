@@ -46,9 +46,11 @@ def sortContainers(containers, lastUpdateEpi):
             for iframe in EpiContainer[0].find_all({'iframe': 'src'}):
                 sLink = iframe["src"].replace(",", "|")
                 print(sLink)
+                if sLink[:4] != 'http':
+                    EpiImagePage = urlParser('https:' + sLink, "html.parser")
+                else:
+                    EpiImagePage = urlParser(sLink, "html.parser")
 
-                # EpiImagePage = urlParser('https:' + sLink, "html.parser")
-                EpiImagePage = urlParser(sLink, "html.parser")
                 EpiImageContainer = EpiImagePage.findAll("script")
                 # print(EpiImageContainer[8])
                 # print(eContainer)
@@ -124,7 +126,7 @@ for MetaID in range(0, len(SerialMeta)):
 
     lastUpdateEpi = data[-1][0]
     print(lastUpdateEpi)
-    baseurl = 'http://www.tamiltwistom.com/'
+    baseurl = 'https://www.tamiltwistya.com/'
     my_url = baseurl + '?s=' + SerialMeta[MetaID]['SearchID']
     print(my_url)
     PParser = urlParser(my_url, "html.parser")
