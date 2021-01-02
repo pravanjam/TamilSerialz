@@ -47,7 +47,8 @@ def sortContainers(containers, lastUpdateEpi):
                 sLink = iframe["src"].replace(",", "|")
                 print(sLink)
 
-                EpiImagePage = urlParser('https:' + sLink, "html.parser")
+                # EpiImagePage = urlParser('https:' + sLink, "html.parser")
+                EpiImagePage = urlParser(sLink, "html.parser")
                 EpiImageContainer = EpiImagePage.findAll("script")
                 # print(EpiImageContainer[8])
                 # print(eContainer)
@@ -141,7 +142,6 @@ for MetaID in range(0, len(SerialMeta)):
     NINI = {}
     StopUpdate = 'n'
     for i in range(0, pagenumber):
-
         try:
             if pagenumber > 1:
                 my_url = baseurl + 'page/' + \
