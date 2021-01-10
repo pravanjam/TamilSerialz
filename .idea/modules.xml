@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/TamilSerialz.iml" filepath="$PROJECT_DIR$/.idea/TamilSerialz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../KODI_Projects/plugin.video.sgtv/.idea/plugin.video.sgtv.iml" filepath="$PROJECT_DIR$/../../KODI_Projects/plugin.video.sgtv/.idea/plugin.video.sgtv.iml" />
     </modules>
   </component>
 </project>
